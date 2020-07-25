@@ -21,7 +21,13 @@ def Mode(hist):
 
     returns: value from Hist
     """
-    return 0
+    highestKey = next(iter(hist.GetDict()))
+    for key in hist.GetDict():
+        if (hist.GetDict()[key] > hist.GetDict()[highestKey]):
+            highestKey = key
+
+
+    return highestKey
 
 
 def AllModes(hist):
@@ -31,7 +37,7 @@ def AllModes(hist):
 
     returns: iterator of value-freq pairs
     """
-    return []
+    return sorted(hist.Items(), key=itemgetter(1), reverse=True)
 
 
 def main(script):
